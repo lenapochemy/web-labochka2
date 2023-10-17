@@ -1,5 +1,6 @@
 body {
     background-color: #B1DDF0;
+
 }
 #my_name {
     font-family: fantasy;
@@ -16,7 +17,7 @@ body {
 }
 
 img {
-    height: 250px;
+    height: 300px;
 }
 
 table[id="result_in_table"] tr:hover {
@@ -51,6 +52,19 @@ h1, table[id="result_in_table"] > tr{
 button:hover, button:focus{
     background-color: lightpink;
 }
+
+input[type="button"]:hover{
+    background-color: lightpink;
+}
+
+input[type="button"]:disabled{
+    background-color: grey;
+}
+
+input[type="button"]{
+    background-color: lawngreen;
+}
+
 
 button {
     background-color: cornflowerblue;
