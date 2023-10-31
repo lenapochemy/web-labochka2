@@ -20,9 +20,8 @@ public class ControllerServlet extends HttpServlet {
                     request.getParameter("r") == null ||
                     request.getParameter("x").isEmpty() ||
                     request.getParameter("y").isEmpty() ||
-                    request.getParameter("r").isEmpty() ||
-                    Double.parseDouble(request.getParameter("y")) < -3 ||
-                    Double.parseDouble(request.getParameter("y")) >5 ){
+                    request.getParameter("r").isEmpty()
+            ){
                 error("incorrect data", response);
                 return;
             }

@@ -57,12 +57,8 @@ input[type="button"]:hover{
     background-color: lightpink;
 }
 
-input[type="button"]:disabled{
-    background-color: grey;
-}
-
 input[type="button"]{
-    background-color: lawngreen;
+    background-color: pink;
 }
 
 
@@ -75,9 +71,25 @@ button {
     justify-content: center;
 }
 
-.success{
-    color: green;
+a{
+    outline: none;
+    text-decoration: none;
 }
-.fail {
-    color: red;
+a:link{
+    color: black;
+}
+a:visited{
+    color: black;
+}
+a:focus{
+    border-bottom: 1px solid;
+    background: deeppink;
+}
+a:hover{
+    background-color: deeppink;
+    border-bottom: 1px solid;
+ }
+a:active{
+    background: cornflowerblue;
+    color: black;
 }

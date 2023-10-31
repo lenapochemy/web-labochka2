@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DotsStorage implements Serializable {
+public final class DotsStorage implements Serializable {
     private final List<Dot> dots = new ArrayList<>();
 
     public void addDot(Dot newDot){
@@ -14,6 +14,7 @@ public class DotsStorage implements Serializable {
     }
 
     public List<Dot> getDots() {
-        return dots;
+        List<Dot> list = dots;
+        return list;
     }
 }

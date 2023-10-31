@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="dots.Dot" %>
 <%@ page import="dots.DotsStorage" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
 
 
 <!DOCTYPE html>
@@ -16,10 +19,6 @@
          <th colspan="5" id="my_name">Русакова Елена Дмитриевна, P3217, вариант 2701</th>
      </tr> -->
     <h1 id="my_name">Русакова Елена Дмитриевна, P3217, вариант 1756</h1>
-    <tr>
-        <td rowspan="4"></td>
-        <td colspan="5" id="instruction">Чтобы узнать, попала ли точка в закрашенную область, введите параметры:</td>
-    </tr>
 
     <tr>
         <td colspan="5" id="result_in_table" >
@@ -35,12 +34,13 @@
                 <th>Текущее время</th>
             </thead>
             <tbody>
-            <% for(Dot dot : dots.getDots()) { %>
+            <% List<Dot> list = dots.getDots(); %>
+            <% list = list.stream().sorted(Comparator.comparing(Dot::getTime).reversed()).collect(Collectors.toList()); %>
+            <% for(Dot dot : list) { %>
             <tr>
                 <td> <%=dot.getX()%> </td>
                 <td> <%=dot.getY()%> </td>
                 <td> <%=dot.getR()%> </td>
-
                 <td> <%= dot.isHit() ? "Точка попала"
                     : "Точка не попала"%>
                 </td>
@@ -54,7 +54,7 @@
     </tr>
     <tr>
         <td>
-            <a href="/labochka2/index.jsp">Обратно к форме</a>
+            <a href="/labochka2/index.jsp" class="back_to_form">Обратно к форме</a>
         </td>
     </tr>
 

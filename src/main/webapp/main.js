@@ -6,7 +6,7 @@ ctx.fillStyle = "deeppink";
 let dots = [];
 
 window.onload = function () {
-    drawAxes(ctx);
+    drawAxes();
     drawDots();
 
     let buttons = document.querySelectorAll("input[name=r]");
@@ -39,6 +39,7 @@ function send(x, y, r, action){
     let dot = new Dotjs(x, y);
     addDot(dot);
     dots.push(dot);
+    window.localStorage.setItem("dots", dots.toString());
 
     let url = new URL("http://localhost:8080/labochka2/controller");
     url.searchParams.set("action", action);

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="dots.Dot"%>
 <%@ page import="dots.DotsStorage" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.stream.Collectors" %>
 
 <!DOCTYPE html>
 <html lang="ru-RU">
@@ -10,7 +13,7 @@
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body >
-<table width="100%">
+<table >
     <!-- <tr>
          <th colspan="5" id="my_name">Русакова Елена Дмитриевна, P3217, вариант 2701</th>
      </tr> -->
@@ -58,7 +61,6 @@
         <!-- график -->
         <td rowspan="4">
             <canvas width="500" height="500" id="canvas" >
-
             </canvas>
         </td>
         <!-- просто картинка со свинкой -->
@@ -126,7 +128,9 @@
                 <th>Текущее время</th>
                 </thead>
                 <tbody>
-                <% for(Dot dot : dots.getDots()) { %>
+                <% List<Dot> list = dots.getDots(); %>
+                <% list = list.stream().sorted(Comparator.comparing(Dot::getTime).reversed()).collect(Collectors.toList()); %>
+                <% for(Dot dot : list){ %>
                 <tr>
                     <td> <%=dot.getX()%> </td>
                     <td> <%=dot.getY()%> </td>
@@ -137,6 +141,7 @@
                     </td>
                     <td> <%=dot.getTime()%> </td>
                 </tr>
+
                 <% } %>
                 </tbody>
             </table>

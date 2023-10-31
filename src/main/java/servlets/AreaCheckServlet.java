@@ -23,11 +23,12 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     public void requestHandler(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        //try {
+        try {
             var x = Double.parseDouble(request.getParameter("x"));
             var y = Double.parseDouble(request.getParameter("y"));
             var r = Double.parseDouble(request.getParameter("r"));
             var newDot = new Dot(x, y, r);
+            newDot.setHit(isInArea(newDot));
 
             var session = request.getSession();
 
@@ -61,18 +62,28 @@ public class AreaCheckServlet extends HttpServlet {
                 json.put("result", newDot.isHit());
                 json.put("time", newDot.getTime());
 
+
                 var message = gson.toJson(json);
+
 
                 response.setContentType("application/json");
                 response.getWriter().write(message);
 
             }
 
-       /* } catch (Exception e){
+        } catch (Exception e){
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
 
-        */
+    }
+
+    private boolean isInArea(Dot dot){
+        Double x = dot.getX();
+        Double y = dot.getY();
+        Double r = dot.getR();
+        return (-r <= x && x <= 0 && 0 <= y && y <= r) ||
+                (y >= -(x / 2) - (r / 2) && y <= 0 && x <= 0) ||
+                (x >= 0 && y <= 0 && (x * x + y * y <= r * r / 4));
     }
 
 }

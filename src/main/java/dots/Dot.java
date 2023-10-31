@@ -1,31 +1,27 @@
 package dots;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Dot {
+public class Dot implements Serializable {
 
     private final Double x;
     private final Double y;
     private final Double r;
-    private final boolean hit;
+    private boolean result;
     private final String time;
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     public Dot(Double x, Double y, Double r){
         this.x = x;
         this.y = y;
         this.r = r;
-        this.hit = isInArea();
+        //this.hit = isInArea();
         Date d = new Date();
         this.time = formatter.format(d);
     }
 
-    private boolean isInArea(){
-        return (-r <= x && x <= 0 && 0 <= y && y <= r) ||
-                (y >= -(x / 2) - (r / 2) && y <= 0 && x <= 0) ||
-                (x >= 0 && y <= 0 && (x * x + y * y <= r * r / 4));
-    }
 
     public Double getX() {
         return x;
@@ -44,6 +40,12 @@ public class Dot {
     }
 
     public boolean isHit() {
-        return hit;
+        return result;
     }
+    public void setHit(boolean isInArea){
+        this.result = isInArea;
+    }
+
+
+
 }
