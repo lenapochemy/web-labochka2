@@ -1,7 +1,5 @@
 package dots;
 
-import dots.Dot;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +12,6 @@ public final class DotsStorage implements Serializable {
     }
 
     public List<Dot> getDots() {
-        List<Dot> list = dots;
-        return list;
+        return new ArrayList<>(dots);
     }
 }

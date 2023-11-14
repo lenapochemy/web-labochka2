@@ -11,13 +11,13 @@ public class Dot implements Serializable {
     private final Double r;
     private boolean result;
     private final String time;
+   // private final String owner;
     private final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     public Dot(Double x, Double y, Double r){
         this.x = x;
         this.y = y;
         this.r = r;
-        //this.hit = isInArea();
         Date d = new Date();
         this.time = formatter.format(d);
     }
